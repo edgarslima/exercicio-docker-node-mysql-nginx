@@ -36,24 +36,28 @@ app.get('/', (req, res) => {
             
         }
     
-    
-        connection.query('SELECT * FROM people', function (err, result, field) {
-            if (err) {
-                res.send('<h1>Erro ao executar a consulta</h1>' + err)
-            } else {
-                
-                htmlLista += '<h2>- Lista de nomes cadastrada no banco de dados. </h2>'
-                htmlLista += '<h3>Foram encontrados ' + result.length + ' registros. </h3>'
-    
-                htmlLista += "<ul>"
-                for (var i in result) {
-                    htmlLista += "<li>" + result[i].id + " - " + result[i].name + "</li>";
+        try {
+            connection.query('SELECT * FROM people', function (err, result, field) {
+                if (err) {
+                    res.send('<h1>Erro ao executar a consulta</h1>' + err)
+                } else {
+                    
+                    htmlLista += '<h2>- Lista de nomes cadastrada no banco de dados. </h2>'
+                    htmlLista += '<h3>Foram encontrados ' + result.length + ' registros. </h3>'
+        
+                    htmlLista += "<ul>"
+                    for (var i in result) {
+                        htmlLista += "<li>" + result[i].id + " - " + result[i].name + "</li>";
+                    }
+                    htmlLista += "</ul>"
+                    res.send('<h1>Full Cycle Rocks!</h1>' + htmlLista)
+                    connection.end()
                 }
-                htmlLista += "</ul>"
-                res.send('<h1>Full Cycle Rocks!</h1>' + htmlLista)
-                connection.end()
-            }
-        }); 
+            }); 
+        } catch (error) {
+            res.send('<p>Erro ao carregar a lista, por favor, tente novamente; ' + error + '</p>')
+        }
+        
     } catch (error) {
         res.send('<p>Erro ao carregar a lista, por favor, tente novamente; ' + error + '</p>')
     }
