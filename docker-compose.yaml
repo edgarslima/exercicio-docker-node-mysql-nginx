@@ -3,16 +3,11 @@ version: '3'
 services:
 
   app:
-    build: 
-      context: node
+    build:
+      context: ./node
     container_name: app
-    command: node index.js
     networks:
       - node-network-lista
-    #ports:
-    #  - "8080:8080"
-    volumes:
-      - ./node:/usr/src/app 
     tty: true
     depends_on:
       - db

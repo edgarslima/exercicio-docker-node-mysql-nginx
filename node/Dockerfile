@@ -1,11 +1,10 @@
-FROM node:15
+FROM node:18 AS build
 
 WORKDIR /usr/src/app
 
-VOLUME [ ".:/usr/src/app" ]
+COPY package*.json ./
+COPY index.js ./
 
-COPY . .
-
-EXPOSE 8080
+RUN npm install -y
 
 CMD [ "node", "index.js" ]
