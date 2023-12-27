@@ -6,8 +6,11 @@ services:
     build:
       context: ./node
     container_name: app
+    volumes:
+      - ./node:/usr/src/app
     networks:
       - node-network-lista
+    entrypoint: wait-for db:3306 -t 40 --  ./start.sh
     tty: true
     depends_on:
       - db
