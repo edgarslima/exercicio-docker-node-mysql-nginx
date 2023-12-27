@@ -18,7 +18,7 @@ cd exercicio-docker-node-mysql-nginx
 
 Subir docker compose
 ```bash
-docker-compose up -d .
+docker-compose up -d 
 ```
 
 Acessar pelo browser
