@@ -6,12 +6,3 @@ RUN apt update && \
     chmod +x /usr/bin/wait-for
     
 WORKDIR /usr/src/app
-
-#VOLUME [ "./node:/usr/src/app/" ]
-
-#COPY package*.json ./
-#COPY index.js ./
-
-
-
-#CMD [ "node", "index.js" ]
